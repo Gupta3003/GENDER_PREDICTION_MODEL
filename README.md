@@ -288,9 +288,3 @@ predict_name_gender("Ansh Tyagi")
 * Real-Time Prediction Dashboard.
 
 ---
-
-## Author
-
-**Bhavya Gupta**
-
-Machine Learning Project – Gender Prediction from Full Name using Logistic Regression and TF-IDF Character N-Grams.
