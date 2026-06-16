@@ -1,0 +1,6 @@
+# Ignore Virtual Enviroments
+venv_predict
+
+# Ignore .vscode
+.vscode
+
