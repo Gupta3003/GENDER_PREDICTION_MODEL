@@ -1,4 +1,5 @@
 import joblib
+
 import os
 
 os.makedirs("models", exist_ok=True)
@@ -14,3 +15,5 @@ while True:
     X = vectorizer.transform([name])
     prediction = model.predict(X)[0]
     print(f"Prediction: {prediction}\n")
+
+
