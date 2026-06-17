@@ -15,22 +15,23 @@ The system learns character patterns from names and predicts gender along with c
 ```text
 Gender-Prediction-Project/
 │
-├── data/
+├── Data/
 │   ├── data.csv
 │   └── Gender_Data.csv
 │
-├── notebooks/
-│   └── Gender_Prediction.ipynb
+├── Gender_Prediction_Final.ipynb
 │
-├── venv/
-│
+├── test.py
+|
 ├── requirements.txt
 │
+├── .gitignore
+|
 ├── README.md
 │
-└── outputs/
-    ├── accuracy_report.png
-    └── prediction_results.csv
+└── models/
+    ├── gender_model.pkl
+    └── vectorizer.pkl
 ```
 
 ---
@@ -69,8 +70,11 @@ Gender-Prediction-Project/
 
 ```python
 LogisticRegression(
-    class_weight='balanced',
-    max_iter=2000
+        C=10,
+        max_iter=1000,
+        class_weight='balanced',
+        solver='liblinear'
+    )
 )
 ```
 
@@ -81,9 +85,10 @@ LogisticRegression(
 * Captures meaningful patterns in names.
 
 ```python
-CountVectorizer(
+vectorizer = TfidfVectorizer(
     analyzer='char',
-    ngram_range=(2,4)
+    ngram_range=(3,5),
+    sublinear_tf=True,
 )
 ```
 
@@ -127,10 +132,12 @@ Testing Data  : 20%
 ### Model
 
 ```python
-model = LogisticRegression(
-    class_weight='balanced',
-    max_iter=2000
-)
+LogisticRegression(
+        C=10,
+        max_iter=1000,
+        class_weight='balanced',
+        solver='liblinear'
+    )
 ```
 
 ---
@@ -152,8 +159,8 @@ The model was evaluated using Accuracy Score and Classification Report to measur
 ### Accuracy Score
 
 ```text
-Accuracy: 0.8910599655550336
-(~89.11%)
+Accuracy: 0.8843035437733443
+(~88.43%)
 ```
 
 ### Classification Report
@@ -161,25 +168,15 @@ Accuracy: 0.8910599655550336
 ```text
               precision    recall  f1-score   support
 
-           F       0.92      0.89      0.91     18681
-           M       0.86      0.89      0.87     13254
+      Female       0.91      0.89      0.90     19207
+        Male       0.85      0.88      0.86     13724
 
-    accuracy                           0.89     31935
-   macro avg       0.89      0.89      0.89     31935
-weighted avg       0.89      0.89      0.89     31935
+    accuracy                           0.88     32931
+   macro avg       0.88      0.88      0.88     32931
+weighted avg       0.89      0.88      0.88     32931
 ```
 
 ### Performance Summary
-
-- Overall Accuracy: **89.11%**
-- Female (F) Prediction Precision: **92%**
-- Female (F) Prediction Recall: **89%**
-- Female (F) F1-Score: **91%**
-- Male (M) Prediction Precision: **86%**
-- Male (M) Prediction Recall: **89%**
-- Male (M) F1-Score: **87%**
-- Total Test Samples Evaluated: **31,935**
-- Model Training Time: **Approximately 13 seconds**
 
 The results indicate that the Logistic Regression model combined with TF-IDF Character N-Gram features performs effectively for gender prediction from full names, achieving approximately 89% accuracy on the test dataset.
 
@@ -197,7 +194,7 @@ cd Gender-Prediction-Project
 ### Create Virtual Environment
 
 ```bash
-python -m venv venv
+python -m venv venv_predict
 ```
 
 ### Activate Environment
