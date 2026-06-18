@@ -8,7 +8,7 @@ using Machine Learning.
 Technologies: - Logistic Regression - TF-IDF Character N-Gram
 
 ## Project Structure
-'''
+```
 Gender-Prediction-Project/
 
 │
@@ -27,7 +27,7 @@ Gender-Prediction-Project/
 ├── requirements.txt
 │
 └── README.md
-'''
+```
 
 ## Dataset
 
