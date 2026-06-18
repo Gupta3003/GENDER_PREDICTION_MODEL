@@ -8,18 +8,26 @@ using Machine Learning.
 Technologies: - Logistic Regression - TF-IDF Character N-Gram
 
 ## Project Structure
-
+'''
 Gender-Prediction-Project/
 
--   Data/
-    -   data.csv
-    -   Gender_Data.csv
--   Gender_Prediction_Final.ipynb
--   requirements.txt
--   README.md
--   models/
-    -   gender_model.pkl
-    -   vectorizer.pkl
+│
+├── Data/
+│ │
+│ ├── data.csv
+│ └── Gender_Data.csv
+│
+├── models/
+│ │
+│ ├── gender_model.pkl
+│ └── vectorizer.pkl
+│
+├── Gender_Prediction_Final.ipynb
+│
+├── requirements.txt
+│
+└── README.md
+'''
 
 ## Dataset
 
