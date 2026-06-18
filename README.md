@@ -160,7 +160,7 @@ It extracts:
 TF-IDF Code Example
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-
+```python
 # Character TF-IDF Vectorizer
 
 vectorizer = TfidfVectorizer(
@@ -174,5 +174,5 @@ vectorizer = TfidfVectorizer(
 X = vectorizer.fit_transform(
     data['Name']
 )
-
+```
 
