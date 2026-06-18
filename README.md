@@ -2,286 +2,83 @@
 
 ## Project Overview
 
-This project predicts the gender (Male/Female) of a person based on their full name (First Name + Last Name) using Machine Learning techniques.
+This project predicts gender (Male/Female) from a person's full name
+using Machine Learning.
 
-The model is trained on a combination of Indian and foreign name datasets collected from Kaggle. Logistic Regression is used as the classification algorithm, while TF-IDF Character N-Grams are used for feature extraction.
-
-The system learns character patterns from names and predicts gender along with confidence scores.
-
----
+Technologies: - Logistic Regression - TF-IDF Character N-Gram
 
 ## Project Structure
 
-```text
 Gender-Prediction-Project/
-│
-├── Data/
-│   ├── data.csv
-│   └── Gender_Data.csv
-│
-├── Gender_Prediction_Final.ipynb
-│
-├── test.py
-|
-├── requirements.txt
-│
-├── .gitignore
-|
-├── README.md
-│
-└── models/
-    ├── gender_model.pkl
-    └── vectorizer.pkl
-```
 
----
+-   Data/
+    -   data.csv
+    -   Gender_Data.csv
+-   Gender_Prediction_Final.ipynb
+-   requirements.txt
+-   README.md
+-   models/
+    -   gender_model.pkl
+    -   vectorizer.pkl
 
-## Dataset Information
+## Dataset
 
-### Dataset 1
+data.csv: - Labels: M / F
 
-**File Name:** `data.csv`
+Gender_Data.csv: - Labels: 0 / 1
 
-* Contains names and corresponding gender labels.
-* Includes a mixture of Indian and international names.
-* Used for training and evaluation.
+Converted labels: - Male - Female
 
-### Dataset 2
+## Model
 
-**File Name:** `Gender_Data.csv`
+Logistic Regression with TF-IDF Character N-Gram features.
 
-* Additional dataset containing gender-labeled names.
-* Combined with Dataset 1 to improve diversity and model performance.
+## Prediction Example
 
-### Data Sources
+{ 'input': 'Ansh Tyagi', 'predicted_gender': 'Male', 'confidence':
+'high', 'probability': 0.94, 'all_probabilities': { 'Female': 0.06,
+'Male': 0.94 } }
 
-* Kaggle Gender Prediction Datasets
-* Publicly available name datasets
+## Sample Predictions
 
----
+Bhavya Gupta: - Predicted Gender: Male - Confidence: Low - Probability:
+0.52
 
-## Technologies Used
+Ansh Tyagi: - Predicted Gender: Male - Confidence: High - Probability:
+0.94
 
-### Logistic Regression
+Kumar Ambuj: - Predicted Gender: Male - Confidence: High - Probability:
+0.97
 
-* Supervised Machine Learning algorithm.
-* Used for binary classification (Male/Female).
-* Handles class imbalance using:
+## Evaluation
 
-```python
-LogisticRegression(
-        C=10,
-        max_iter=1000,
-        class_weight='balanced',
-        solver='liblinear'
-    )
-)
-```
+Tested on 10,000 names.
 
-### TF-IDF Vectorization
+Total Gender Prediction Accuracy:
 
-* Converts names into numerical features.
-* Uses character-level analysis.
-* Captures meaningful patterns in names.
+89.47%
 
-```python
-vectorizer = TfidfVectorizer(
-    analyzer='char',
-    ngram_range=(3,5),
-    sublinear_tf=True,
-)
-```
+## Confidence Levels
 
----
-
-## Data Preprocessing
-
-The following preprocessing steps are applied:
-
-* Merge multiple datasets.
-* Remove duplicates.
-* Remove missing values.
-* Convert text to lowercase.
-* Handle special characters.
-* Normalize name formats.
-* Filter abnormal text lengths.
-
----
-
-## Feature Engineering
-
-TF-IDF Character N-Grams are used to transform names into numerical vectors.
-
-Benefits:
-
-* Captures prefixes and suffixes.
-* Learns common gender-specific name patterns.
-* Improves classification accuracy.
-
----
-
-## Model Training
-
-### Train-Test Split
-
-```text
-Training Data : 80%
-Testing Data  : 20%
-```
-
-### Model
-
-```python
-LogisticRegression(
-        C=10,
-        max_iter=1000,
-        class_weight='balanced',
-        solver='liblinear'
-    )
-```
-
----
-
-## Prediction Confidence Levels
-
-| Confidence Score | Level             |
-| ---------------- | ----------------- |
-| < 0.55           | Low Confidence    |
-| 0.55 - 0.70      | Medium Confidence |
-| > 0.70           | High Confidence   |
-
----
-
-## Model Performance / Evaluation
-
-The model was evaluated using Accuracy Score and Classification Report to measure its performance on the test dataset.
-
-### Accuracy Score
-
-```text
-Accuracy: 0.8843035437733443
-(~88.43%)
-```
-
-### Classification Report
-
-```text
-              precision    recall  f1-score   support
-
-      Female       0.91      0.89      0.90     19207
-        Male       0.85      0.88      0.86     13724
-
-    accuracy                           0.88     32931
-   macro avg       0.88      0.88      0.88     32931
-weighted avg       0.89      0.88      0.88     32931
-```
-
-### Performance Summary
-
-The results indicate that the Logistic Regression model combined with TF-IDF Character N-Gram features performs effectively for gender prediction from full names, achieving approximately 89% accuracy on the test dataset.
-
----
+\< 0.55 : Low\
+0.55 - 0.70 : Medium\
+\> 0.70 : High
 
 ## Installation
 
-### Clone Repository
-
-```bash
-git clone <repository-link>
-cd Gender-Prediction-Project
-```
-
-### Create Virtual Environment
-
-```bash
-python -m venv venv_predict
-```
-
-### Activate Environment
-
-Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-Linux/Mac:
-
-```bash
-source venv/bin/activate
-```
-
-### Install Dependencies
-
-```bash
 pip install -r requirements.txt
-```
 
----
+Run:
 
-
-## Running the Project
-
-Launch Jupyter Notebook:
-
-```bash
 jupyter notebook
-```
 
 Open:
 
-```text
-notebooks/Gender_Prediction.ipynb
-```
-
-Run all cells to:
-
-* Load data
-* Train model
-* Evaluate accuracy
-* Predict gender from names
-
----
-
-## Example Prediction
-
-### Input
-
-```python
-predict_name_gender("Ansh Tyagi")
-```
-
-### Output
-
-```python
-{
-    'input': 'Ansh Tyagi',
-    'predicted_gender': 'M',
-    'confidence': 'high',
-    'probability': 0.95,
-    'all_probabilities': {
-        'F': 0.05,
-        'M': 0.95
-    }
-}
-```
-
-### Output Description
-
-- **input** → Name provided by the user.
-- **predicted_gender** → Predicted gender (M/F).
-- **confidence** → Confidence level (Low, Medium, High).
-- **probability** → Probability of the predicted gender.
-- **all_probabilities** → Probability scores for all gender classes.
-
----
+Gender_Prediction_Final.ipynb
 
 ## Future Improvements
 
-* Deep Learning based prediction.
-* Streamlit Web Application.
-* REST API Deployment.
-* Multilingual Name Support.
-* Real-Time Prediction Dashboard.
-
----
+-   Deep Learning based prediction
+-   Streamlit Web Application
+-   REST API Deployment
+-   Multilingual name support
