@@ -2,20 +2,47 @@
 
 ## Project Overview
 
-This project predicts gender (Male/Female) from a person's full name
-using Machine Learning.
+This project predicts gender (Male/Female) from a person's full name 
+(First Name + Last Name) using Machine Learning techniques.
 
-Technologies: - Logistic Regression - TF-IDF Character N-Gram
+The project uses Natural Language Processing (NLP) techniques to extract 
+patterns from names and a Machine Learning classification algorithm to 
+predict gender.
 
-## Project Structure
+The model is trained on Indian and foreign name datasets with gender labels.
+
+## Technologies Used
+
+- Python
+- Machine Learning
+- Natural Language Processing (NLP)
+- Scikit-Learn
+- Pandas
+- NumPy
+- Jupyter Notebook
+
+
+## Machine Learning Approach
+
+The project follows these steps:
+
+1. Data Collection
+2. Data Preprocessing
+3. Feature Extraction using TF-IDF
+4. Model Training using Logistic Regression
+5. Gender Prediction
+6. Model Evaluation
+
+
+## Folder Structure
 ```
 Gender-Prediction-Project/
-
 │
 ├── Data/
 │ │
 │ ├── data.csv
-│ └── Gender_Data.csv
+│ ├── Gender_Data.csv
+│ └── test_names.csv
 │
 ├── models/
 │ │
@@ -29,64 +56,123 @@ Gender-Prediction-Project/
 └── README.md
 ```
 
-## Dataset
+
+
+# Dataset
 
 | File Name | Description | Size | Link |
 |-----------|-------------|------|------|
-| data.csv | Main dataset containing names and gender information with Male label as 0 and Female as 1 | 3687 KB | [Data Link](Data/data.csv) |
-| Gender_Data.csv | Additional gender dataset containing names and labels with Male label as M and Female as F | 635 KB | [Data Link](Data/Gender_Data.csv) |
-| test_names.csv | Testing dataset containing sample names for model prediction testing | 143 KB | [Data Link](Data/test_names.csv) |
+| data.csv | Main dataset containing names and gender information with Male label as 0 and Female label as 1 | 3687 KB | [Data Link](Data/data.csv) |
+| Gender_Data.csv | Additional dataset containing names and gender labels with Male label as M and Female label as F | 635 KB | [Data Link](Data/Gender_Data.csv) |
+| test_names.csv | Testing dataset containing sample names for prediction testing | 143 KB | [Data Link](Data/test_names.csv) |
 
-## Model
 
-Logistic Regression with TF-IDF Character N-Gram features.
+# Logistic Regression
 
-## Prediction Example
+Logistic Regression is a supervised machine learning classification algorithm
+used to predict gender categories (Male/Female) based on a person's full name.
 
-{ 'input': 'Ansh Tyagi', 'predicted_gender': 'Male', 'confidence':
-'high', 'probability': 0.94, 'all_probabilities': { 'Female': 0.06,
-'Male': 0.94 } }
+The model learns patterns from numerical features generated using TF-IDF 
+Vectorization and performs classification.
 
-## Sample Predictions
+## Model Configuration
 
-Bhavya Gupta: - Predicted Gender: Male - Confidence: Low - Probability:
-0.52
+- Algorithm: Logistic Regression
+- C = 3
+- Solver = liblinear
+- Maximum Iteration = 1000
+- Class Weight = Balanced
 
-Ansh Tyagi: - Predicted Gender: Male - Confidence: High - Probability:
-0.94
 
-Kumar Ambuj: - Predicted Gender: Male - Confidence: High - Probability:
-0.97
+## Why Logistic Regression?
 
-## Evaluation
+- Works efficiently for text classification problems.
+- Handles binary classification (Male/Female).
+- Provides probability scores for prediction confidence.
+- Performs well with TF-IDF features.
 
-Tested on 10,000 names.
 
-Total Gender Prediction Accuracy:
+## Logistic Regression Code Example
 
-89.47%
+```python
+from sklearn.linear_model import LogisticRegression
 
-## Confidence Levels
 
-\< 0.55 : Low\
-0.55 - 0.70 : Medium\
-\> 0.70 : High
+# Create Logistic Regression Model
 
-## Installation
+model = LogisticRegression(
+    C=3,
+    solver='liblinear',
+    max_iter=1000,
+    class_weight='balanced'
+)
 
-pip install -r requirements.txt
 
-Run:
+# Train Model
 
-jupyter notebook
+model.fit(
+    x_train,
+    y_train
+)
 
-Open:
+# TF-IDF Vectorization (Feature Extraction)
+TF-IDF (Term Frequency-Inverse Document Frequency) is an NLP technique
+used to convert names into numerical features.
 
-Gender_Prediction_Final.ipynb
+Machine Learning models cannot directly understand text data, so TF-IDF
+converts names into mathematical vectors.
 
-## Future Improvements
+In this project, character-level TF-IDF is used.
 
--   Deep Learning based prediction
--   Streamlit Web Application
--   REST API Deployment
--   Multilingual name support
+Character Level TF-IDF
+
+Example:
+
+Input:
+
+Rahul
+
+Generated Character N-Grams:
+
+ra
+ah
+hu
+ul
+
+rah
+ahu
+hul
+
+These patterns help the model identify name structures.
+
+N-Gram Range
+
+The project uses:
+
+ngram_range=(2,5)
+
+It extracts:
+
+2 character patterns
+3 character patterns
+4 character patterns
+5 character patterns
+TF-IDF Code Example
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+# Character TF-IDF Vectorizer
+
+vectorizer = TfidfVectorizer(
+    analyzer='char',
+    ngram_range=(2,5)
+)
+
+
+# Convert names into numerical features
+
+X = vectorizer.fit_transform(
+    data['Name']
+)
+
+
