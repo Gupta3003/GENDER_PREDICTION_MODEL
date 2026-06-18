@@ -32,10 +32,9 @@ Gender-Prediction-Project/
 ## Dataset
 
 | File Name | Description | Size | Link |
-|-----------|-------------|------|--------------|------------------|------|
-| data.csv | Main dataset containing names and gender information with Male label as 0 and Female as 1 | 3687 KB | [https://www.kaggle.com/datasets/gracehephzibahm/gender-by-name](Data Link) |
-| Gender_Data.csv | Additional gender dataset containing names and labels with Male lable as M and Female as F | 635 KB | [https://www.kaggle.com/datasets/shubhamuttam/indian-names-by-gender](Data Link)|
-
+|-----------|-------------|------|------|
+| data.csv | Main dataset containing names and gender information with Male label as 0 and Female as 1 | 3687 KB | [Data Link](https://www.kaggle.com/datasets/gracehephzibahm/gender-by-name) |
+| Gender_Data.csv | Additional gender dataset containing names and labels with Male label as M and Female as F | 635 KB | [Data Link](https://www.kaggle.com/datasets/shubhamuttam/indian-names-by-gender) |
 ## Model
 
 Logistic Regression with TF-IDF Character N-Gram features.
