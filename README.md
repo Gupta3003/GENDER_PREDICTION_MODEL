@@ -31,11 +31,10 @@ Gender-Prediction-Project/
 
 ## Dataset
 
-data.csv: - Labels: M / F
-
-Gender_Data.csv: - Labels: 0 / 1
-
-Converted labels: - Male - Female
+| File Name | Description | Size | Link |
+|-----------|-------------|------|--------------|------------------|------|
+| data.csv | Main dataset containing names and gender information with Male label as 0 and Female as 1 | 3687 KB | [https://www.kaggle.com/datasets/gracehephzibahm/gender-by-name](Data Link) |
+| Gender_Data.csv | Additional gender dataset containing names and labels with Male lable as M and Female as F | 635 KB | [https://www.kaggle.com/datasets/shubhamuttam/indian-names-by-gender](Data Link)|
 
 ## Model
 
