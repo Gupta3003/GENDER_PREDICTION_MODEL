@@ -60,11 +60,11 @@ Gender-Prediction-Project/
 
 # Dataset
 
-| File Name | Description | Size | Link |
-|-----------|-------------|------|------|
-| data.csv | Main dataset containing names and gender information with Male label as 0 and Female label as 1 | 3687 KB | [Data Link](Data/data.csv) |
-| Gender_Data.csv | Additional dataset containing names and gender labels with Male label as M and Female label as F | 635 KB | [Data Link](Data/Gender_Data.csv) |
-| test_names.csv | Testing dataset containing sample names for prediction testing | 143 KB | [Data Link](Data/test_names.csv) |
+| File Name | Description | Size |
+|-----------|-------------|------|
+| data.csv | Main dataset containing names and gender information with Male label as 0 and Female label as 1 | 3687 KB |
+| Gender_Data.csv | Additional dataset containing names and gender labels with Male label as M and Female label as F | 635 KB | 
+| test_names.csv | Testing dataset containing sample names for prediction testing | 143 KB |
 
 
 # Logistic Regression
@@ -188,7 +188,28 @@ Ansh Tyagi
 | Kumar Ambuj | Male | High | 0.97 |
 
 ---
+### Script Execution Output
 
+Testing the model and find prediction accuracy of the test_names dataset
+
+```text
+        Name Actual Gender Predicted Gender
+0         John          Male             Male
+1         Mary        Female           Female
+2      Michael          Male             Male
+3     Jennifer        Female           Female
+4        David          Male             Male
+...        ...           ...              ...
+9995     Salih          Male             Male
+9996    Tovino          Male             Male
+9997    Thomas          Male             Male
+9998    Ansaad          Male             Male
+9999      Adil          Male             Male
+
+[10000 rows x 3 columns]
+
+Total Gender Prediction Accuracy: 89.47 %
+```
 ## Evaluation
 
 The model was comprehensively tested on a dataset of **10,000 names**.
